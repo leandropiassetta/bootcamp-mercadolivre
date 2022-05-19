@@ -7,7 +7,7 @@ var (
 	idade int
 )
 
-func main() {
+func MeusDados() {
 	nome = "Leandro de Freitas Piassetta"
 	idade = 35
 
