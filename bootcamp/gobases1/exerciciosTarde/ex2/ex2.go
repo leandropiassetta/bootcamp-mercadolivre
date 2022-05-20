@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-type client struct {
+type Client struct {
 	name           string
 	age            int
 	isEmployed     bool
@@ -12,18 +12,18 @@ type client struct {
 	isInterestFree bool
 }
 
-func loan(c client) {
-	if c.age > 22 && c.isEmployed && c.workingMonths > 12 {
-		c.allowLoan = true
+func loan(client Client) {
+	if client.age > 22 && client.isEmployed && client.workingMonths > 12 {
+		client.allowLoan = true
 	}
 
-	if c.allowLoan && c.salary > 100000 {
-		c.isInterestFree = true
+	if client.allowLoan && client.salary > 100000 {
+		client.isInterestFree = true
 	}
 
-	if !c.allowLoan {
+	if !client.allowLoan {
 		fmt.Println("Não autorizado a pedir empréstimo")
-	} else if c.isInterestFree {
+	} else if client.isInterestFree {
 		fmt.Println("Autorizado a pedir empréstimo sem juros")
 	} else {
 		fmt.Println("Autorizado a pedir empréstimo com juros")
@@ -31,7 +31,7 @@ func loan(c client) {
 }
 
 func main() {
-	client1 := client{
+	client1 := Client{
 		name:          "Leandro Piasseta",
 		age:           35,
 		isEmployed:    true,
