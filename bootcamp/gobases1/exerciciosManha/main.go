@@ -1,7 +1,6 @@
 package main
 
-import "fmt"
-
+// go run .  roda todos os arquivos dentro da minha pasta
 func main() {
-	fmt.Println("teste")
+	MeusDados()
 }
