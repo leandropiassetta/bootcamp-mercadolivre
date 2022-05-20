@@ -9,7 +9,7 @@ type client struct {
 	workingMonths int
 	salary        int
 	loan          bool
-	interest      bool
+	interestFree  bool
 }
 
 func loan(c client) {
@@ -18,12 +18,12 @@ func loan(c client) {
 	}
 
 	if c.loan && c.salary < 100000 {
-		c.interest = true
+		c.interestFree = true
 	}
 
 	if !c.loan {
 		fmt.Println("Não autorizado a pedir empréstimo")
-	} else if !c.interest {
+	} else if !c.interestFree {
 		fmt.Println("Autorizado a pedir empréstimo sem juros")
 	} else {
 		fmt.Println("Autorizado a pedir empréstimo com juros")
