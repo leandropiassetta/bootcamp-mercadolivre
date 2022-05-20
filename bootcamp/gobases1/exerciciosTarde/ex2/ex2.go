@@ -3,27 +3,27 @@ package main
 import "fmt"
 
 type client struct {
-	name          string
-	age           int
-	isEmployed    bool
-	workingMonths int
-	salary        int
-	loan          bool
-	interestFree  bool
+	name           string
+	age            int
+	isEmployed     bool
+	workingMonths  int
+	salary         int
+	allowLoan      bool
+	isInterestFree bool
 }
 
 func loan(c client) {
 	if c.age > 22 && c.isEmployed && c.workingMonths > 12 {
-		c.loan = true
+		c.allowLoan = true
 	}
 
-	if c.loan && c.salary < 100000 {
-		c.interestFree = true
+	if c.allowLoan && c.salary > 100000 {
+		c.isInterestFree = true
 	}
 
-	if !c.loan {
+	if !c.allowLoan {
 		fmt.Println("Não autorizado a pedir empréstimo")
-	} else if !c.interestFree {
+	} else if c.isInterestFree {
 		fmt.Println("Autorizado a pedir empréstimo sem juros")
 	} else {
 		fmt.Println("Autorizado a pedir empréstimo com juros")
@@ -36,7 +36,7 @@ func main() {
 		age:           35,
 		isEmployed:    true,
 		workingMonths: 13,
-		salary:        100000,
+		salary:        90000,
 	}
 
 	loan(client1)
