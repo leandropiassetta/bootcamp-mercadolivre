@@ -23,6 +23,7 @@ func makeFileCSV(fileName string) {
 
 func writeDataCSV(fileName string, p Product) {
 	infoProducts := fmt.Sprintf("\n%2.d,%.2f,%d", p.id, p.price, p.quantity)
+	// os.O_APPEND|os.O_WRONLY|os.O_CREATE -> comando para da append no arquivo...
 
 	file, err := os.OpenFile(fileName+".csv", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 
