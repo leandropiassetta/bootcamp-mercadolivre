@@ -66,7 +66,7 @@ func getMinValue(grades ...float64) (float64, error) {
 
 func getAverage(grades ...float64) (float64, error) {
 	if len(grades) == 0 {
-		return 0.0, errors.New("input is required")
+		return 0.0, errors.New("input is required.")
 	}
 
 	sum := 0.0
