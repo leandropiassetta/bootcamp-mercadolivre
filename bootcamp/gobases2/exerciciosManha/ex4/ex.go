@@ -20,7 +20,7 @@ func operation(fn string) (func(...float64) (float64, error), error) {
 	case average:
 		return getAverage, nil
 	default:
-		return nil, errors.New("Operation not recognized")
+		return nil, errors.New("Operation not recognized.")
 	}
 }
 
@@ -66,7 +66,7 @@ func getMinValue(grades ...float64) (float64, error) {
 
 func getAverage(grades ...float64) (float64, error) {
 	if len(grades) == 0 {
-		return 0.0, errors.New("input is required.")
+		return 0.0, errors.New("input is required...")
 	}
 
 	sum := 0.0
