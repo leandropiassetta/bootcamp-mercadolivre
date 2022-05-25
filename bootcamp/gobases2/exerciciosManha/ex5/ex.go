@@ -49,23 +49,30 @@ func Animal(specie string) (func(quantity int) int, error) {
 	} else {
 		return nil, errors.New("invalid animal type")
 	}
-}
 
+}
 func main() {
 
-	dogFunc, _ := Animal("dog")
-	catFunc, _ := Animal(cat)
-	tarantulaFunc, _ := Animal(tarantula)
-	hamsterFunc, _ := Animal(hamster)
+	dogFunc, err := Animal("animal")
+	catFunc, err := Animal(cat)
+	tarantulaFunc, err := Animal(tarantula)
+	hamsterFunc, err := Animal(hamster)
+
+	if err != nil {
+		fmt.Println("Animal inserido é inválido")
+	}
 
 	fmt.Printf("A quantidade de alimento do(s) cachorro(s) (em gramas): %d gramas\n", dogFunc(5))
 	fmt.Printf("A quantidade de alimento do(s) gatos(s) (em gramas): %d gramas\n", catFunc(2))
 	fmt.Printf("A quantidade de alimento da(s) tarantulas(s) (em gramas): %d gramas\n", tarantulaFunc(3))
 	fmt.Printf("A quantidade de alimento do(s) hamster(s) (em gramas): %d gramas\n", hamsterFunc(4))
 
-	_, err := Animal("Urubu")
-	if err != nil {
-		fmt.Println("animal inválido")
-	}
+	total := 0.0
+	total += float64(dogFunc(5))
+	total += float64(catFunc(2))
+	total += float64(tarantulaFunc(3))
+	total += float64(hamsterFunc(4))
+
+	fmt.Printf("No total, precisaremos de %.2f KG de\nalimentos para todos os animais", total/1000)
 
 }
