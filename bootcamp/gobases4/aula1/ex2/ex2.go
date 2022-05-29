@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 )
 
@@ -9,7 +8,7 @@ var salary int
 
 func salaryTax(salaray float64) (string, error) {
 	if salaray < 15000 {
-		return "", errors.New("erro: O salário digitado não está dentro do valor mínimo")
+		return "", fmt.Errorf("erro: O mínimo tributável é 15000.00 e o salário informado é:[%.2f]", salaray)
 	}
 	return "Necessário pagamento de imposto.", nil
 }
