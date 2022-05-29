@@ -12,9 +12,11 @@ type Product struct {
 }
 
 func makeFileCSV(fileName string) {
+	path, _ := os.Getwd()
+
 	header := []byte("id,price,quantity")
 
-	err := os.WriteFile("./bootcamp/gobases3/exercicioDia1/ex1/"+fileName+".csv", header, 0644)
+	err := os.WriteFile(path+"/gobases3/exercicioDia1/ex1/"+fileName+".csv", header, 0644)
 
 	if err != nil {
 		panic(err)
@@ -24,8 +26,9 @@ func makeFileCSV(fileName string) {
 func writeDataCSV(fileName string, p Product) {
 	infoProducts := fmt.Sprintf("\n%2.d,%.2f,%d", p.id, p.price, p.quantity)
 	// os.O_APPEND|os.O_WRONLY|os.O_CREATE -> comando para da append no arquivo...
+	path, _ := os.Getwd()
 
-	file, err := os.OpenFile(fileName+".csv", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+	file, err := os.OpenFile(path+"/gobases3/exercicioDia1/ex1/"+fileName+".csv", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 
 	if err != nil {
 		panic(err)
@@ -37,6 +40,14 @@ func writeDataCSV(fileName string, p Product) {
 
 func main() {
 	p1 := Product{11, 10.00, 10}
+	p2 := Product{11, 10.00, 10}
+	p3 := Product{11, 10.00, 10}
+
 	makeFileCSV("product")
-	writeDataCSV("./bootcamp/gobases3/exercicioDia1/ex1/product", p1)
+	writeDataCSV("product", p1)
+	writeDataCSV("product", p2)
+	writeDataCSV("product", p3)
+	writeDataCSV("product", p3)
+	writeDataCSV("product", p3)
+
 }
