@@ -30,10 +30,14 @@ var clients = []client{}
 
 func registerCustomer(name string, lastName string, RG int, phone int, address string) {
 
-	_, err := readFileTXT("customer")
-	if err != nil {
-		panic("erro: o arquivo indicado não foi encontrado ou está danificado")
-	}
+	defer func() {
+		err := recover()
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+	}()
 
 	if id, err := generateID(); err != nil {
 		panic(err)
@@ -41,11 +45,16 @@ func registerCustomer(name string, lastName string, RG int, phone int, address s
 		clients = append(clients, client{file: id, name: name, lastName: lastName, RG: RG, phone: phone, address: address})
 	}
 
+	_, err := readFileTXT("customer")
+	if err != nil {
+		panic("erro: o arquivo indicado não foi encontrado ou está danificado")
+	}
+
 }
 
 func generateID() (int, error) {
 
-	if reflect.TypeOf(clients).String() != "[]client" {
+	if reflect.TypeOf(clients).Kind() != reflect.Slice {
 		panic("interrompa a execução")
 	}
 
@@ -53,10 +62,6 @@ func generateID() (int, error) {
 }
 
 func main() {
-	err := recover()
-
-	fmt.Println(err)
-
 	registerCustomer("Leandro", "Piasseta", 5464644, 34758322, "Rua das batata")
-	fmt.Println(clients)
+
 }
