@@ -1,0 +1,20 @@
+{
+  "produtos": [
+    { 
+    "id": 1,
+    "name": "TV",
+    "color": "Black",
+    "price": 2450,
+    "code": "asd345",
+    "creationDate": "15/09/2022" 
+    },
+    { 
+      "id": 2,
+      "name": "Fogao",
+      "color": "Black",
+      "price": 4450,
+      "code": "bs2345",
+      "creationDate": "16/09/2022" 
+      }
+  ]
+}
