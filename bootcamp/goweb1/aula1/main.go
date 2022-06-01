@@ -1,8 +1,6 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,11 +20,17 @@ type product struct {
 func main() {
 	router := gin.Default()
 
+	//Capture o request GET "/ola-leandro"
 	router.GET("/ola-leandro", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "Olá Leandro!",
 		})
 	})
 
-	http.ListenAndServe(":8080", nil)
+	router.GET("/products", func(getAll *gin.Context) {
+		getAll.File("./bootcamp/goweb1/products.json")
+	})
+
+	// Executamos nosso servidor na porta 8080
+	router.Run()
 }
