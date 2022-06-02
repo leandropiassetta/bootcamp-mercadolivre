@@ -16,7 +16,7 @@ type product struct {
 	Price        float64 `json:"price"`
 	Code         string  `json:"code"`
 	Published    bool    `json:"published"`
-	CreationDate string  `json:"creation_date"`
+	CreationDate string  `json:"creationDate"`
 }
 
 func readProductFile() (data []byte, err error) {
@@ -25,7 +25,6 @@ func readProductFile() (data []byte, err error) {
 	if err != nil {
 		return nil, err
 	}
-
 	return data, nil
 }
 
@@ -36,14 +35,14 @@ func GetAll(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"erro":        err.Error(),
-			"mensagem":    "Ocorreu um erro ao resgatar as transações",
+			"mensagem":    "Ocorreu um erro ao trazer os produtos",
 			"status_code": http.StatusInternalServerError,
 		})
 		return
 	}
 	json.Unmarshal(data, &products)
 	c.JSON(http.StatusOK, products)
-
+	return
 }
 
 func GetOne(c *gin.Context) {
@@ -51,13 +50,20 @@ func GetOne(c *gin.Context) {
 
 	var products []product
 
-	if err == nil {
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"erro":        err.Error(),
+			"mensagem":    "Ocorreu um erro ao trazer os produtos",
+			"status_code": http.StatusInternalServerError,
+		})
+		return
+	} else {
 		json.Unmarshal(data, &products)
 	}
 
-	productId, err := strconv.Atoi(c.Param("id"))
+	productId, err2 := strconv.Atoi(c.Param("id"))
 
-	if err == nil {
+	if err2 == nil {
 		for _, p := range products {
 			if p.Id == productId {
 				c.JSON(http.StatusOK, p)
@@ -65,7 +71,6 @@ func GetOne(c *gin.Context) {
 			}
 		}
 	}
-
 }
 
 func main() {
