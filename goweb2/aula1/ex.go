@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -21,16 +20,21 @@ func saveProducts() gin.HandlerFunc {
 		var req product
 
 		if err := c.ShouldBindJSON(&req); err != nil {
-			c.JSON(http.StatusNotFound, gin.H{
+			c.JSON(http.StatusBadRequest, gin.H{
 				"error": err.Error(),
 			})
 			return
 		}
 		req.ID = len(products) + 1
 		products = append(products, req)
-		fmt.Println(products)
-		c.JSON(http.StatusOK, products)
+		c.JSON(http.StatusOK, req)
 	}
+}
+
+func getAllProducts(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"produtos": &products,
+	})
 }
 
 func main() {
@@ -38,6 +42,7 @@ func main() {
 
 	routesGroup := router.Group("/products")
 	{
+		routesGroup.GET("/", getAllProducts)
 		routesGroup.POST("/", saveProducts())
 
 	}
