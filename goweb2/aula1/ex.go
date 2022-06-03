@@ -19,13 +19,14 @@ var products = []product{}
 
 func saveProducts() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// token := c.GetHeader("token")
+		token := c.GetHeader("token")
 
-		// if token != "123456" {
-		// 	c.JSON(http.StatusUnauthorized, gin.H{
-		// 		"error": "token inválido",
-		// 	})
-		// }
+		if token != "123456" {
+			c.JSON(http.StatusUnauthorized, gin.H{
+				"error": "token inválido",
+			})
+			return
+		}
 
 		var req product
 
