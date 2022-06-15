@@ -6,7 +6,7 @@ Quais são as diferenças entre a caixa branca e a caixa preta?
 
 CAIXA PRETA -> É um método de teste em que a estrutura, projeto ou operação INTERNA é DESCONHECIDA pela pessoa que executa o teste.
 
-CAIXA BRANCA -> Nesse método, quem executa o teste conhece e tem visibilidade sobre o código.
+CAIXA BRANCA -> Nesse método, quem executa o teste conhece e tem visibilidade sobre o código...
 
 O que é um teste funcional?
 
